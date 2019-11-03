@@ -32,7 +32,7 @@ public class ImmutableArrayListTest {
     @Test
     public void testAddToList() {
         String got = StandartArr.add(100).toString();
-        String expected = Arrays.toString(new int[] {1, 2, 3, 4, 5, 100});
+        String expected = Arrays.toString(new int[]{1, 2, 3, 4, 5, 100});
 
         assertEquals(expected, got);
     }
@@ -45,7 +45,7 @@ public class ImmutableArrayListTest {
     @Test
     public void testAddByIndexToList() {
         String got = StandartArr.add(0, 100).toString();
-        String expected = Arrays.toString(new int[] {100, 1, 2, 3, 4, 5});
+        String expected = Arrays.toString(new int[]{100, 1, 2, 3, 4, 5});
 
         assertEquals(expected, got);
     }
@@ -57,44 +57,44 @@ public class ImmutableArrayListTest {
 
     @Test
     public void testAddAllToEmptyList() {
-        String got = EmptyArr.addAll(new Object[] {1, 2, 3, 4, 5}).toString();
-        String expected = Arrays.toString(new int[] {1, 2, 3, 4, 5});
+        String got = EmptyArr.addAll(new Object[]{1, 2, 3, 4, 5}).toString();
+        String expected = Arrays.toString(new int[]{1, 2, 3, 4, 5});
 
         assertEquals(expected, got);
     }
 
     @Test
     public void testAddAllToList() {
-        String got = StandartArr.addAll(new Object[] {1, 2, 3, 4, 5}).toString();
-        String expected = Arrays.toString(new int[] {1, 2, 3, 4, 5, 1, 2, 3, 4, 5});
+        String got = StandartArr.addAll(new Object[]{1, 2, 3, 4, 5}).toString();
+        String expected = Arrays.toString(new int[]{1, 2, 3, 4, 5, 1, 2, 3, 4, 5});
 
         assertEquals(expected, got);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testAddAllByIndexToEmptyList() {
-        EmptyArr.addAll(0, new Object[] {1, 2});
+        EmptyArr.addAll(0, new Object[]{1, 2});
     }
 
     @Test
     public void testAddAllByFirstIndexToList() {
-        String got = StandartArr.addAll(0, new Object[] {12, 13}).toString();
-        String expected = Arrays.toString(new int[] {12, 13, 1, 2, 3, 4, 5});
+        String got = StandartArr.addAll(0, new Object[]{12, 13}).toString();
+        String expected = Arrays.toString(new int[]{12, 13, 1, 2, 3, 4, 5});
 
         assertEquals(expected, got);
     }
 
     @Test
     public void testAddAllByMiddleIndexToList() {
-        String got = StandartArr.addAll(3, new Object[] {11, 12}).toString();
-        String expected = Arrays.toString(new int[] {1, 2, 3, 11, 12, 4, 5});
+        String got = StandartArr.addAll(3, new Object[]{11, 12}).toString();
+        String expected = Arrays.toString(new int[]{1, 2, 3, 11, 12, 4, 5});
 
         assertEquals(expected, got);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testAddAllByOutOfBoundIndexToList() {
-        StandartArr.addAll(6, new Object[] {1, 2, 3, 4, 5});
+        StandartArr.addAll(6, new Object[]{1, 2, 3, 4, 5});
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -123,7 +123,7 @@ public class ImmutableArrayListTest {
     @Test
     public void testRemoveByFirstIndexFromList() {
         String got = StandartArr.remove(0).toString();
-        String expected = Arrays.toString(new int[] {2, 3, 4, 5});
+        String expected = Arrays.toString(new int[]{2, 3, 4, 5});
 
         assertEquals(got, expected);
     }
@@ -136,7 +136,7 @@ public class ImmutableArrayListTest {
     @Test
     public void testRemoveByMiddleIndexFromList() {
         String got = StandartArr.remove(3).toString();
-        String expected = Arrays.toString(new int[] {1, 2, 3, 5});
+        String expected = Arrays.toString(new int[]{1, 2, 3, 5});
 
         assertEquals(expected, got);
     }
@@ -149,7 +149,7 @@ public class ImmutableArrayListTest {
     @Test
     public void testSetOnFirstIndexFromList() {
         String got = StandartArr.set(0, 12).toString();
-        String expected = Arrays.toString(new int[] {12, 2, 3, 4, 5});
+        String expected = Arrays.toString(new int[]{12, 2, 3, 4, 5});
 
         assertEquals(expected, got);
     }
@@ -162,7 +162,7 @@ public class ImmutableArrayListTest {
     @Test
     public void testSetOnMiddleIndexFromList() {
         String got = StandartArr.set(4, 12).toString();
-        String expected = Arrays.toString(new int[] {1, 2, 3, 4, 12});
+        String expected = Arrays.toString(new int[]{1, 2, 3, 4, 12});
 
         assertEquals(expected, got);
     }
@@ -210,7 +210,7 @@ public class ImmutableArrayListTest {
     @Test
     public void testClearEmptyList() {
         String got = EmptyArr.clear().toString();
-        String expected = Arrays.toString(new Object[] {});
+        String expected = Arrays.toString(new Object[]{});
 
         assertEquals(expected, got);
     }
@@ -218,7 +218,7 @@ public class ImmutableArrayListTest {
     @Test
     public void testClearList() {
         String got = StandartArr.clear().toString();
-        String expected = Arrays.toString(new Object[] {});
+        String expected = Arrays.toString(new Object[]{});
 
         assertEquals(expected, got);
     }
@@ -257,7 +257,7 @@ public class ImmutableArrayListTest {
 
     @Test
     public void testToStringEmptyList() {
-        String expected = Arrays.toString(new Object[] {});
+        String expected = Arrays.toString(new Object[]{});
         String got = EmptyArr.toString();
 
         assertEquals(expected, got);
@@ -265,7 +265,7 @@ public class ImmutableArrayListTest {
 
     @Test
     public void testToStringList() {
-        String expected = Arrays.toString(new Object[] {1, 2, 3, 4, 5});
+        String expected = Arrays.toString(new Object[]{1, 2, 3, 4, 5});
         String got = StandartArr.toString();
 
         assertEquals(expected, got);
