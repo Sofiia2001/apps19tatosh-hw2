@@ -2,13 +2,14 @@ package ua.edu.ucu.collections.immutable;
 
 import java.util.Arrays;
 
-public class ImmutableLinkedList implements ImmutableList, ImmutableOptionalLinkedList {
+public class ImmutableLinkedList implements ImmutableList,
+        ImmutableOptionalLinkedList {
     private Node head, tail;
     private int size = 0;
 
     static class Node {
-        Object value;
-        Node next, prev;
+        private Object value;
+        private Node next, prev;
 
         Node(Object val) {
             value = val;
@@ -18,7 +19,7 @@ public class ImmutableLinkedList implements ImmutableList, ImmutableOptionalLink
     }
 
     private void throwIndexException(int index) {
-        if ((index > size - 1) || index < 0) {
+        if (index > size - 1 || index < 0) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -61,18 +62,18 @@ public class ImmutableLinkedList implements ImmutableList, ImmutableOptionalLink
         if (size == 1 || index == 0) {
             return newArr.addFirst(e);
         } else {
-            Node temp1 = newArr.head;
-            Node temp2 = newArr.head.next;
+            Node tempF = newArr.head;
+            Node tempS = newArr.head.next;
 
-            int temp2Index = 1;
-            while (temp2Index < index) {
-                temp1 = temp1.next;
-                temp2 = temp2.next;
-                temp2Index++;
+            int tempSIndex = 1;
+            while (tempSIndex < index) {
+                tempF = tempF.next;
+                tempS = tempS.next;
+                tempSIndex++;
             }
-            temp1.next = node;
-            temp1 = temp1.next;
-            temp1.next = temp2;
+            tempF.next = node;
+            tempF = tempF.next;
+            tempF.next = tempS;
 
             newArr.size++;
             return newArr;

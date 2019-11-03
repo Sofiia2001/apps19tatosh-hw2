@@ -121,7 +121,7 @@ public class ImmutableArrayList implements ImmutableList {
 
     @Override
     public Object[] toArray() {
-        return array;
+        return Arrays.copyOf(array, array.length);
     }
 
     @Override
