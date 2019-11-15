@@ -25,7 +25,7 @@ public class ImmutableLinkedList implements ImmutableList,
     }
 
     @Override
-    public ImmutableList add(Object e) {
+    public ImmutableLinkedList add(Object e) {
         ImmutableLinkedList newArr = new ImmutableLinkedList();
         Node node = new Node(e);
         node.next = null;
@@ -50,7 +50,7 @@ public class ImmutableLinkedList implements ImmutableList,
     }
 
     @Override
-    public ImmutableList add(int index, Object e) {
+    public ImmutableLinkedList add(int index, Object e) {
         ImmutableLinkedList newArr = new ImmutableLinkedList();
         newArr.size = size;
 
@@ -74,7 +74,6 @@ public class ImmutableLinkedList implements ImmutableList,
             tempF.next = node;
             tempF = tempF.next;
             tempF.next = tempS;
-
             newArr.size++;
             return newArr;
         }
@@ -94,7 +93,7 @@ public class ImmutableLinkedList implements ImmutableList,
     }
 
     @Override
-    public ImmutableList addAll(Object[] c) {
+    public ImmutableLinkedList addAll(Object[] c) {
         ImmutableLinkedList newArr = new ImmutableLinkedList();
         newArr.size = size + c.length;
         if (head == null) {
@@ -116,7 +115,7 @@ public class ImmutableLinkedList implements ImmutableList,
     }
 
     @Override
-    public ImmutableList addAll(int index, Object[] c) {
+    public ImmutableLinkedList addAll(int index, Object[] c) {
         ImmutableLinkedList newArr = new ImmutableLinkedList();
         newArr.size = size + c.length;
         throwIndexException(index);
@@ -138,12 +137,10 @@ public class ImmutableLinkedList implements ImmutableList,
             newArr.tail = tail;
             Node beg = newArr.head;
 
-            for (int i = 0; i < index; i++) {
+            for (int i = 0; i < index - 1; i++) {
                 beg = beg.next;
             }
-
-            Node stored = beg;
-            beg = beg.prev;
+            Node stored = beg.next;
 
             for (int j = 0; j < c.length; j++) {
                 beg.next = new Node(c[j]);
@@ -167,28 +164,38 @@ public class ImmutableLinkedList implements ImmutableList,
     }
 
     @Override
-    public ImmutableList remove(int index) {
+    public ImmutableLinkedList remove(int index) {
         throwIndexException(index);
         ImmutableLinkedList newArr = new ImmutableLinkedList();
-        newArr.head = head;
-        newArr.size = size;
+        newArr.size = size - 1;
+
         if (index == 0) {
+            newArr.head = head;
             return newArr.removeFirst();
         } else {
-            Node temp = newArr.head;
-            for (int i = 0; i < index; i++) {
-                temp = temp.next;
+            Node currHead = head;
+            newArr.head = new Node(currHead.value);
+            Node change = newArr.head;
+            currHead = currHead.next;
+            int counter = 0;
+            while (counter < index - 1) {
+                change.next = new Node(currHead.value);
+                change = change.next;
+                currHead = currHead.next;
+                counter++;
             }
-            Node left = temp.next;
-            temp = temp.prev;
-            temp.next = left;
-            newArr.size--;
+            currHead = currHead.next;
+            while (currHead != null) {
+                change.next = new Node(currHead.value);
+                change = change.next;
+                currHead = currHead.next;
+            }
             return newArr;
         }
     }
 
     @Override
-    public ImmutableList set(int index, Object e) {
+    public ImmutableLinkedList set(int index, Object e) {
         throwIndexException(index);
         ImmutableLinkedList newArr = new ImmutableLinkedList();
         newArr.size = size;
@@ -222,7 +229,7 @@ public class ImmutableLinkedList implements ImmutableList,
     }
 
     @Override
-    public ImmutableList clear() {
+    public ImmutableLinkedList clear() {
         return new ImmutableLinkedList();
     }
 

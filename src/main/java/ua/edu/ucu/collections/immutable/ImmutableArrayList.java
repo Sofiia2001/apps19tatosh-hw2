@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class ImmutableArrayList implements ImmutableList {
     private Object[] array;
 
-    ImmutableArrayList() {
+    public ImmutableArrayList() {
         array = new Object[0];
     }
 
@@ -16,7 +16,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList add(Object e) {
+    public ImmutableArrayList add(Object e) {
         ImmutableArrayList newArr = new ImmutableArrayList();
         newArr.array = Arrays.copyOf(array, array.length + 1);
         newArr.array[newArr.array.length - 1] = e;
@@ -24,7 +24,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList add(int index, Object e) {
+    public ImmutableArrayList add(int index, Object e) {
         throwIndexException(index);
         ImmutableArrayList newArr = new ImmutableArrayList();
         newArr.array = Arrays.copyOf(array, array.length + 1);
@@ -36,7 +36,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList addAll(Object[] c) {
+    public ImmutableArrayList addAll(Object[] c) {
         ImmutableArrayList newArr = new ImmutableArrayList();
         newArr.array = Arrays.copyOf(array, array.length + c.length);
         int cIndex = 0;
@@ -48,7 +48,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList addAll(int index, Object[] c) {
+    public ImmutableArrayList addAll(int index, Object[] c) {
         throwIndexException(index);
         ImmutableArrayList newArr = new ImmutableArrayList();
         newArr.array = Arrays.copyOf(array, array.length + c.length);
@@ -70,7 +70,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList remove(int index) {
+    public ImmutableArrayList remove(int index) {
         throwIndexException(index);
         ImmutableArrayList newArr = new ImmutableArrayList();
         newArr.array = new Object[array.length - 1];
@@ -84,7 +84,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList set(int index, Object e) {
+    public ImmutableArrayList set(int index, Object e) {
         throwIndexException(index);
         ImmutableArrayList newArr = new ImmutableArrayList();
         newArr.array = Arrays.copyOf(array, array.length);
@@ -110,7 +110,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList clear() {
+    public ImmutableArrayList clear() {
         return new ImmutableArrayList();
     }
 
