@@ -2,14 +2,20 @@ package ua.edu.ucu.collections.immutable;
 
 import java.util.Arrays;
 
-public class ImmutableArrayList implements ImmutableList {
+public final class ImmutableArrayList implements ImmutableList {
     private Object[] array;
 
     public ImmutableArrayList() {
         array = new Object[0];
     }
 
-    private void throwIndexException(int index) {
+    private void throwIndexExceptionAdd(int index) {
+        if (index > array.length) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private void throwIndexExceptionGet(int index) {
         if (index > array.length - 1) {
             throw new IndexOutOfBoundsException();
         }
@@ -17,39 +23,22 @@ public class ImmutableArrayList implements ImmutableList {
 
     @Override
     public ImmutableArrayList add(Object e) {
-        ImmutableArrayList newArr = new ImmutableArrayList();
-        newArr.array = Arrays.copyOf(array, array.length + 1);
-        newArr.array[newArr.array.length - 1] = e;
-        return newArr;
+        return addAll(size(), new Object[]{e});
     }
 
     @Override
     public ImmutableArrayList add(int index, Object e) {
-        throwIndexException(index);
-        ImmutableArrayList newArr = new ImmutableArrayList();
-        newArr.array = Arrays.copyOf(array, array.length + 1);
-        newArr.array[index] = e;
-        for (int i = index + 1; i < newArr.array.length; i++) {
-            newArr.array[i] = array[i - 1];
-        }
-        return newArr;
+        return addAll(index, new Object[]{e});
     }
 
     @Override
     public ImmutableArrayList addAll(Object[] c) {
-        ImmutableArrayList newArr = new ImmutableArrayList();
-        newArr.array = Arrays.copyOf(array, array.length + c.length);
-        int cIndex = 0;
-        for (int i = array.length; i < newArr.array.length; i++) {
-            newArr.array[i] = c[cIndex];
-            cIndex++;
-        }
-        return newArr;
+        return addAll(size(), c);
     }
 
     @Override
     public ImmutableArrayList addAll(int index, Object[] c) {
-        throwIndexException(index);
+        throwIndexExceptionAdd(index);
         ImmutableArrayList newArr = new ImmutableArrayList();
         newArr.array = Arrays.copyOf(array, array.length + c.length);
         for (int i = 0; i < c.length; i++) {
@@ -65,13 +54,13 @@ public class ImmutableArrayList implements ImmutableList {
 
     @Override
     public Object get(int index) {
-        throwIndexException(index);
+        throwIndexExceptionGet(index);
         return array[index];
     }
 
     @Override
     public ImmutableArrayList remove(int index) {
-        throwIndexException(index);
+        throwIndexExceptionGet(index);
         ImmutableArrayList newArr = new ImmutableArrayList();
         newArr.array = new Object[array.length - 1];
         for (int i = 0; i < index; i++) {
@@ -85,7 +74,7 @@ public class ImmutableArrayList implements ImmutableList {
 
     @Override
     public ImmutableArrayList set(int index, Object e) {
-        throwIndexException(index);
+        throwIndexExceptionGet(index);
         ImmutableArrayList newArr = new ImmutableArrayList();
         newArr.array = Arrays.copyOf(array, array.length);
         newArr.array[index] = e;
@@ -96,7 +85,7 @@ public class ImmutableArrayList implements ImmutableList {
     public int indexOf(Object e) {
         int value = -1;
         for (int i = 0; i < array.length; i++) {
-            if (array[i] == e) {
+            if (array[i].equals(e)) {
                 value = i;
                 break;
             }

@@ -37,11 +37,6 @@ public class ImmutableArrayListTest {
         assertEquals(expected, got);
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testAddByIndexToEmptyList() {
-        EmptyArr.add(0, 'a');
-    }
-
     @Test
     public void testAddByIndexToList() {
         String got = StandartArr.add(0, 100).toString();
@@ -71,10 +66,6 @@ public class ImmutableArrayListTest {
         assertEquals(expected, got);
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testAddAllByIndexToEmptyList() {
-        EmptyArr.addAll(0, new Object[]{1, 2});
-    }
 
     @Test
     public void testAddAllByFirstIndexToList() {

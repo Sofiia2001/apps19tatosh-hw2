@@ -44,11 +44,6 @@ public class ImmutableLinkedListTest {
         assertEquals(expected, got);
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testAddByIndexToEmptyList() {
-        EmptyArr.add(0, 'a');
-    }
-
     @Test
     public void testAddByIndexToList() {
         String got = StandartArr.add(0, 100).toString();
@@ -76,11 +71,6 @@ public class ImmutableLinkedListTest {
         String expected = Arrays.toString(new int[]{1, 2, 3, 4, 5, 1, 2, 3, 4, 5});
 
         assertEquals(expected, got);
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testAddAllByIndexToEmptyList() {
-        EmptyArr.addAll(0, new Object[]{1, 2});
     }
 
     @Test
@@ -339,7 +329,7 @@ public class ImmutableLinkedListTest {
     @Test
     public void testRemoveLastFromStandartList() {
         String got = OrdinaryArr.removeLast().toString();
-        String expected = Arrays.toString(new Object[] {1, 2, 3, 4});
+        String expected = Arrays.toString(new Object[]{1, 2, 3, 4});
 
         assertEquals(expected, got);
     }
@@ -347,7 +337,7 @@ public class ImmutableLinkedListTest {
     @Test
     public void testRemoveFirstFromStandartList() {
         String got = OrdinaryArr.removeFirst().toString();
-        String expected = Arrays.toString(new Object[] {2, 3, 4, 5});
+        String expected = Arrays.toString(new Object[]{2, 3, 4, 5});
 
         assertEquals(expected, got);
     }
